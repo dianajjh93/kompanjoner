@@ -10,9 +10,9 @@ require 'kompanjoner'
 task :default => 'spec:run'
 
 PROJ.name = 'kompanjoner'
-PROJ.authors = 'FIXME (who is writing this software)'
-PROJ.email = 'FIXME (your e-mail)'
-PROJ.url = 'FIXME (project homepage)'
+PROJ.authors = 'Ari Brown (seydar)'
+PROJ.email = 'ari@aribrown.com'
+PROJ.url = 'http://github.com/seydar/kompanjoner/'
 PROJ.rubyforge.name = 'kompanjoner'
 
 PROJ.spec.opts << '--color'
