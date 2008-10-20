@@ -94,7 +94,7 @@ class Kompanjoner::Sinatra::Request
   
   # Returns the data recieved in the query string.
   def GET
-    Rack::Utils.parse_query(path_info.split('?').last)
+    Rack::Utils.parse_query @hash['query']
   end
 
   # The union of GET and POST data.
@@ -216,8 +216,11 @@ module Kompanjoner::Sinatra
   # @param method<String> the request method, like "GET" or "POST" or "PUT", etc.
   # 
   # @return [String]
-  def self.process(path, method)
-    ::Sinatra.application.dispatch 'REQUEST_METHOD' => method, 'PATH_INFO' => path
+  def self.process(path, method, params={})
+    result = ::Sinatra.application.dispatch({'REQUEST_METHOD' => method, 'PATH_INFO' => path.split('?').first, 'query' => path.split('?').last}.merge!(params))
+    result.last.body.first.to_s
+  rescue
+    raise "Must return a string, or something which responds to #to_s"
   end
   
 end
