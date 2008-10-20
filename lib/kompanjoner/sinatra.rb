@@ -92,15 +92,91 @@ class Kompanjoner::Sinatra::Request
     @hash['PATH_INFO']
   end
   
+  # Returns the data recieved in the query string.
+  def GET
+    Rack::Utils.parse_query(path_info.split('?').last)
+  end
+
+  # The union of GET and POST data.
+  def params
+    self.GET
+  end
+  
+end
+
+class Kompanjoner::EventContext
+
+  attr_accessor :request, :response
+
+  attr_accessor :route_params
+
+  def initialize(request, response, route_params)
+    @params = nil
+    @data = nil
+    @request = request
+    @response = response
+    @route_params = route_params
+    @response.body = nil
+  end
+
+  def status(value=nil)
+    response.status = value if value
+    response.status
+  end
+
+  def body(value=nil)
+    response.body = value if value
+    response.body
+  end
+
+  def params
+    @params ||=
+      begin
+        hash = Hash.new {|h,k| h[k.to_s] if Symbol === k}
+        hash.merge! @request.params
+        hash.merge! @route_params
+        hash
+      end
+  end
+
+  def data
+    @data ||= params.keys.first
+  end
+
+  def stop(*args)
+    throw :halt, args
+  end
+
+  def complete(returned)
+    @response.body || returned
+  end
+
+  def session
+    request.env['session'] ||= request.env['rack.session'] || {}
+  end
+
+  def reset!
+    @params = nil
+    @data = nil
+  end
+
+private
+
+  def method_missing(name, *args, &b)
+    if @response.respond_to?(name)
+      @response.send(name, *args, &b)
+    else
+      super
+    end
+  end
+
 end
 
 class ::Sinatra::Application
-  ##
-  # TODO
-  # replace Sinatra::EventContext with custom one
+  
   def dispatch(env)
     request = Kompanjoner::Sinatra::Request.new(env)
-    context = Sinatra::EventContext.new(request, Rack::Response.new([], 200), {})
+    context = Kompanjoner::EventContext.new(request, Rack::Response.new([], 200), {})
     begin
       returned =
         catch(:halt) do
