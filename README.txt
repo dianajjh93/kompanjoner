@@ -1,26 +1,38 @@
 kompanjoner
-    by FIXME (your name)
-    FIXME (url)
+    by Ari Brown (seydar)
+    http://github.com/seydar/kompanjoner/tree
 
 == DESCRIPTION:
 
-FIXME (describe your package)
+Kompanjoner is a tool to make web frameworks, like Sinatra and Merb,
+pretend to be command line apps or IRC bots.
 
 == FEATURES/PROBLEMS:
 
-* FIXME (list of features or problems)
+* Sinatra is fully supported
+* No subcommands (yet!)
+* Help page provided
 
 == SYNOPSIS:
 
-  FIXME (code sample of usage)
+  require 'rubygems'
+  require 'kompanjoner/sinatra'
+    
+  get 'hello' do
+    "hello, world!"
+  end
+  
+  K::Console.start K::Sinatra
+  
 
 == REQUIREMENTS:
 
-* FIXME (list of requirements)
+  * sinatra [, merb]
+  * a wish for the return of console apps
 
 == INSTALL:
 
-* FIXME (sudo gem install, anything else)
+  [sudo] gem install kompanjoner
 
 == LICENSE:
 

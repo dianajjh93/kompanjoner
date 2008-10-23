@@ -42,6 +42,9 @@ module Kompanjoner
 
 end
 
+# show mercy on the poor coders
+K = Kompanjoner
+
 need{ 'kompanjoner/irc/main'     }
 need{ 'kompanjoner/console/main' }
 need{ 'kompanjoner/sinatra'      }
