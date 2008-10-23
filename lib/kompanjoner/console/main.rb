@@ -34,6 +34,6 @@ EOS
       puts "Params: #{params.inspect}"
     end
     
-    app.process(path,  'GET', params)
+    puts app.process(path,  'GET', params)
   end
 end

@@ -205,6 +205,18 @@ class ::Sinatra::Application
     context.finish
   end
   
+  # don't do custom CL options and arg parsing... I'll take care of it, Mr. Sinatra
+  def self.load_default_options_from_command_line!
+    # Do nothing...
+  end
+
+end
+
+# This is required so that it doesn't try to run it as a web app afterwards
+module ::Sinatra
+  def run
+    # Do nothing...
+  end
 end
 
 module Kompanjoner::Sinatra
