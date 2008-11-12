@@ -28,6 +28,7 @@ pretend to be command line apps or IRC bots.
 == REQUIREMENTS:
 
   * sinatra [, merb]
+  * trollop
   * a wish for the return of console apps
 
 == INSTALL:

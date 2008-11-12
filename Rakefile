@@ -14,6 +14,8 @@ PROJ.authors = 'Ari Brown (seydar)'
 PROJ.email = 'ari@aribrown.com'
 PROJ.url = 'http://github.com/seydar/kompanjoner/'
 PROJ.rubyforge.name = 'kompanjoner'
+PROJ.gem.dependencies << "sinatra"
+PROJ.gem.dependencies << "trollop"
 
 PROJ.spec.opts << '--color'
 

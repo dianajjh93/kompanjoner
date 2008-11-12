@@ -19,7 +19,7 @@ EOS
       opt :verbose, "Print out the path and parameters", :short => '-V', :default => false
     end
     
-    path = '/' + ARGV.shift # various actions
+    path = '/' + ARGV.shift.to_s # various actions
     path.gsub!(/:/, '/')
     
     params = ARGV.map do |arg|
