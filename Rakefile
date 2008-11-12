@@ -12,6 +12,7 @@ task :default => 'spec:run'
 PROJ.name = 'kompanjoner'
 PROJ.authors = 'Ari Brown (seydar)'
 PROJ.email = 'ari@aribrown.com'
+PROJ.version = '0.1'
 PROJ.url = 'http://github.com/seydar/kompanjoner/'
 PROJ.rubyforge.name = 'kompanjoner'
 PROJ.gem.dependencies << "sinatra"

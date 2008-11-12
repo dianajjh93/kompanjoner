@@ -12,7 +12,7 @@ To call, for instance, '/main', you would use `#{$0} main`. To call
 '/main/monkey?key=value' you would use `#{$0} main:monkey key:value`
 
 Usage:
-       test [options] <action>[:<action>...] <param_title>:<value> [more params...]
+       #{$0} [options] <action>[:<action>...] <param_title>:<value> [more params...]
 where [options] are:
 EOS
       
