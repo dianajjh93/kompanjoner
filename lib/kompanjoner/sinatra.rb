@@ -53,18 +53,21 @@ class Kompanjoner::Sinatra::Request
   #   contains the values to be stored, and act as
   #   the environment (that would otherwise be passed
   #   from Rack)
+  # 
   def initialize(hash={})
     (@hash = hash.dup).default = ''
   end
   
   ##
   # @see Hash
+  # 
   def [](key)
     @hash[key]
   end
   
   ##
   # @see Hash
+  # 
   def []=(key, value)
     @hash[key] = value
   end
@@ -72,6 +75,7 @@ class Kompanjoner::Sinatra::Request
   ##
   # Returns the hash
   # @return [Hash{String => String}]
+  # 
   def env
     @hash
   end
@@ -80,6 +84,7 @@ class Kompanjoner::Sinatra::Request
   # This is a shortcut for self['REQUEST_METHOD']
   # 
   # @see Rack::Request in Sinatra's code
+  # 
   def request_method
     @hash['REQUEST_METHOD']
   end
@@ -88,16 +93,21 @@ class Kompanjoner::Sinatra::Request
   # This is a shortcut for self['PATH_INFO']
   # 
   # @see Rack::Request in Sinatra's code
+  # 
   def path_info
     @hash['PATH_INFO']
   end
   
+  ##
   # Returns the data recieved in the query string.
+  # 
   def GET
     Rack::Utils.parse_query @hash['query']
   end
 
+  ##
   # The union of GET and POST data.
+  # 
   def params
     self.GET
   end
@@ -174,6 +184,7 @@ end
 
 class ::Sinatra::Application
   
+  # taken straight from sinatra code
   def dispatch(env)
     request = Kompanjoner::Sinatra::Request.new(env)
     context = Kompanjoner::EventContext.new(request, Rack::Response.new([], 200), {})
@@ -229,7 +240,9 @@ module Kompanjoner::Sinatra
   # 
   # @return [String]
   def self.process(path, method, params={})
-    result = ::Sinatra.application.dispatch({'REQUEST_METHOD' => method, 'PATH_INFO' => path.split('?').first, 'query' => path.split('?').last}.merge!(params))
+    params_string = params.map {|k, v| "#{k}=#{v}" }.join('&')
+    
+    result = ::Sinatra.application.dispatch('REQUEST_METHOD' => method, 'PATH_INFO' => path, 'query' => params_string)
     result.last.body.first.to_s
   rescue
     raise "Must return a string, or something which responds to #to_s"

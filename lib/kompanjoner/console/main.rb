@@ -1,9 +1,13 @@
+require 'trollop'
+
+def Kompanjoner::options(&b)
+  @options_block = b || @options_block
+end
+
 class Kompanjoner::Console
   def self.start(*args); new.start(*args); end
   
   def start(app, *args)
-    require 'trollop'
-    
     opts = Trollop::options do
       version "#{$0} #{Kompanjoner::version} (c) 2008 Ari Brown (seydar)"
       banner <<-EOS
@@ -17,6 +21,7 @@ where [options] are:
 EOS
       
       opt :verbose, "Print out the path and parameters", :short => '-V', :default => false
+      K::options() [self] # call the user supplied block
     end
     
     path = '/' + ARGV.shift.to_s # various actions

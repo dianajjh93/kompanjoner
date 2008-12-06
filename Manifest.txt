@@ -2,7 +2,7 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
-bin/kompanjoner
+kompanjoner.gemspec
 lib/kompanjoner.rb
 lib/kompanjoner/console/main.rb
 lib/kompanjoner/irc/main.rb

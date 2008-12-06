@@ -1,5 +1,6 @@
 # $Id$
-
+require 'rubygems'
+require 'facets'
 require 'find'
 
 namespace :manifest do
@@ -15,9 +16,9 @@ namespace :manifest do
       lines.map! do |line|
         case line
         when %r/^(-{3}|\+{3})/; nil
-        when %r/^@/; Console::ANSICode.blue line
-        when %r/^\+/; Console::ANSICode.green line
-        when %r/^\-/; Console::ANSICode.red line
+        when %r/^@/; ANSICode.blue line # Console::
+        when %r/^\+/; ANSICode.green line
+        when %r/^\-/; ANSICode.red line
         else line end
       end
     end

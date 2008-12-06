@@ -9,7 +9,7 @@ pretend to be command line apps or IRC bots.
 
 == FEATURES/PROBLEMS:
 
-* Sinatra is fully supported
+* Sinatra is fully supported, except for sessions and cookies
 * No subcommands (yet!)
 * Help page provided
 

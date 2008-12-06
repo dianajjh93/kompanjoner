@@ -3,10 +3,12 @@ require "metaid"
 require "need"
 
 class Object
+  
   ##
-  # sets the params to their values
-  # c.with :params => params {...}
-  # does: c.params = params; blk.call; c.params = []
+  # Sets the params to their values.
+  #  c.with :params => params {...}
+  # does: c.params = params; blk.call; c.send :undef_meth, :params
+  # 
   def with(hash)
     hash.each do |key, value|
       meta_def(key) { hash[key] }
@@ -23,6 +25,14 @@ class Object
     end
 
     result
+  end
+  
+  ##
+  # Supplies the receiver to the passed block, if any.
+  # 
+  def tap
+    yield self if block_given?
+    self
   end
 end
 

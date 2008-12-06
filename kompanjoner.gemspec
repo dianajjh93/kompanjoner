@@ -7,8 +7,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/seydar/kompanjoner"
   s.description = "Frameworks need a few buds to listen to other signals, such as IRC or the console!"
   s.authors  = ["Ari Brown"]
-  s.files    = ["bin/kompanjoner",
-                "History.txt",
+  s.files    = ["History.txt",
                 "lib/kompanjoner/console/main.rb",
                 "lib/kompanjoner/irc/main.rb",
                 "lib/kompanjoner/sinatra.rb",
