@@ -1,5 +1,5 @@
-require "/Volumes/music/src/kompanjoner.code/lib/kompanjoner.rb"
 require "/Volumes/music/src/kompanjoner.code/lib/kompanjoner/sinatra.rb"
+require "/Volumes/music/src/kompanjoner.code/lib/kompanjoner/console/main.rb"
 require "trollop"
 
 K::options do |opt|

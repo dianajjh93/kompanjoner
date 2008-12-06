@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "kompanjoner"
   s.version  = "0.1"
-  s.date     = "2008-11-11"
+  s.date     = "2008-12-06"
   s.summary  = "Make Sinatra[, Merb...] play on the command line, too!"
   s.email    = "ari@aribrown.com"
   s.homepage = "http://github.com/seydar/kompanjoner"
